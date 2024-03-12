@@ -21,6 +21,7 @@ class BlogPost(models.Model):
     update_at=models.DateTimeField(auto_now=True)
     thumbnail=models.ImageField(upload_to="thumbnails", default="default.jpg")
     category= models.ForeignKey(Category, on_delete=models.SET_NULL ,null=True, blank=True)
+    tags=models.ManyToManyField(Tags, related_name="posts")
 
     def __str__(self) -> str:
         return f'{self.title}'

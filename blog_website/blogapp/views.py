@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import BlogPost
+from .models import BlogPost,Category
 # Create your views here.
 def home_page_view(request):
 
@@ -18,7 +18,19 @@ def contact_page_view(request):
 
 def blog_details_view(request, blog_id):
     blog_post= BlogPost.objects.get(id=blog_id)
+    categories= Category.objects.all()
+    similar_posts= BlogPost.objects.filter(category=blog_post.category).exclude(id=blog_post.id)
+
     context= {
-        "post": blog_post
+        "post": blog_post,
+        "categories": categories,
+        "similar_posts": similar_posts
     }
     return render(request, "main/post.html", context)
+
+def posts_by_category(request, category_name):
+    posts=BlogPost.objects.filter(category__name=category_name)
+    context={
+        "posts": posts
+    }
+    return render(request, "main/category_name.html", context)

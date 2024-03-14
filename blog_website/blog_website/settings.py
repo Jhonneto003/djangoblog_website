@@ -136,5 +136,16 @@ MEDIA_ROOT=BASE_DIR / "mediafiles"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL='user-login'
-LOGIN_REDIRECT="user-login"
+LOGIN_REDIRECT_URL="home"
 LOGOUT_REDIRECT_URL="user-login"
+
+
+#Email configuration
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
+EMAIL_HOST_USER = 'a3360c52993991'
+EMAIL_PORT = '2525'
+EMAIL_HOST_PASSWORD = '4f5a85042cad5e'
+DEFAULT_FROM_EMAIL="jphnetot@mysite.com"
+DOMAIN="localhost:8000"

@@ -1,0 +1,28 @@
+{%extends "base.html"%}
+
+
+{%block content%}
+
+
+{%if validlink %}
+    <p> Please enter your new password and confirm password</p>
+  
+<form action="" method="post">
+    {%csrf_token%}
+
+    <div>
+        {{form.as_p}}
+    </div>
+
+    <input type="submit" value="Reset Password">
+    
+</form>
+
+{%else%}
+
+   <p>Your reset password link is invalid or has expired</p>
+
+{%endif%}
+
+
+{%endblock content%}

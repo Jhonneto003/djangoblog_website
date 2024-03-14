@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Category(models.Model):
@@ -22,6 +23,7 @@ class BlogPost(models.Model):
     thumbnail=models.ImageField(upload_to="thumbnails", default="default.jpg")
     category= models.ForeignKey(Category, on_delete=models.SET_NULL ,null=True, blank=True)
     tags=models.ManyToManyField(Tags, related_name="posts")
+    author=models.ForeignKey(User, on_delete=models.CASCADE, default=1)
 
     def __str__(self) -> str:
         return f'{self.title}'

@@ -3,6 +3,8 @@ from django.contrib.auth.forms import UserCreationForm
 from.forms import UserRegisterForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from blogapp.forms import BlogForm
 # Create your views here.
 
 
@@ -22,6 +24,24 @@ def register_page(request):
 
 # def signup_page(request):   
 #     return render(request, "Accounts/signup.html")
+
+@login_required
+def add_blog_post(request):
+    user=request.user
+    post_form= BlogForm()
+    context={
+        "form": post_form
+    }
+    if request.method == "POST":
+        form=BlogForm(request.POST, request.FILES)
+        if form.is_valid():
+            form_data=form.save(commit=False)
+            form_data.author=user
+            form_data.save()
+            return redirect('home')
+
+    return render(request, "posts/add_post.html",context)
+
 
 
 @login_required

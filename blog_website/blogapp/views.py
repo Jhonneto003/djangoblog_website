@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import BlogPost,Category
+
 # Create your views here.
 def home_page_view(request):
 
@@ -34,3 +35,7 @@ def posts_by_category(request, category_name):
         "posts": posts
     }
     return render(request, "main/category_name.html", context)
+
+
+
+

@@ -1,4 +1,4 @@
-{%extends "userbase.html"%}
+{%extends "base.html"%}
 
 
 {%block content%}
@@ -12,15 +12,25 @@
                  <p> Login to access this page</p>
               {%endif %}
          {%endif %}
-<form action="{%url 'profile'%}" method="post">
-    {%csrf_token %}
-
-    <div>
-        {{form.as_p}}
+<div class="row tm-row tm-mb-120">
+    <div class="col-12">
+        <form action="" method="post">
+           {%csrf_token %}
+           {{form.as_p}}
+           <div class="'form-group row text-right">
+               <div class="col-4">
+                <button class="tm-btn tm-btn-primary tm-btn-small" type="submit"> Login</button>
+                <input type="hidden" name="next" value="{{next}}">
+               </div>
+           </div>
     </div>
     <input type="Submit" value="Login">
     <input type="hidden" name="next" value="{{next}}">
+
 </form>
+<br> <br>
+<a href="#"> Reset Password</a>
+
 
 
 {%endblock content%}

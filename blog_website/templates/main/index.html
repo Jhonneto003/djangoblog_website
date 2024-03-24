@@ -62,7 +62,15 @@
                     </div>
                     <hr>
                     <div class="d-flex justify-content-between">
-                        <span>48 comments</span>
+                        <span> <ul> 
+                            <h3> Comments are down below</h3>
+                            {%for comment in comments%}
+                            
+                            <li>{{comment.name}} :
+                                 {{comment.content}}</li>
+                            {%endfor%} 
+                        </ul>
+                    </span>
                         <span>by Admin Sam</span>
                     </div>
                 </article>

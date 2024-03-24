@@ -11,6 +11,7 @@
 
 <div class="row tm-row tm-mb-120">
     <div class="col-12">
+        <h4> {{cart}}</h4>
         <form action="" method="post" enctype="multipart/form-data">
                  {%csrf_token%}
             <div class="form-group row mb-4">
@@ -24,7 +25,7 @@
                     <button class="tm-btn tm-btn-primary tm-btn-small" type="submit">Submit</button>                        
                 </div>                            
             </div>
-
+           
         </form>
     </div>
 </div>

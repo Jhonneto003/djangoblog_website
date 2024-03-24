@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+# from django.utils import timezone
 
 # Create your models here.
 class Category(models.Model):
@@ -24,6 +25,18 @@ class BlogPost(models.Model):
     category= models.ForeignKey(Category, on_delete=models.SET_NULL ,null=True, blank=True)
     tags=models.ManyToManyField(Tags, related_name="posts")
     author=models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+   
 
     def __str__(self) -> str:
         return f'{self.title}'
+    
+class CommentsPost(models.Model):
+    name=models.CharField(max_length=20)
+    email=models.EmailField(max_length=20) 
+    content=models.TextField()
+    comments=models.ForeignKey(BlogPost, on_delete=models.CASCADE)
+    time=models.DateTimeField(auto_now_add=True,null=True)
+
+
+    def __str__(self) -> str:
+        return f"{self.name}-comment"
